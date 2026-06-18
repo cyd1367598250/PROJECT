@@ -1,10 +1,9 @@
 from fastapi import APIRouter
-from app.api.v1 import profiles,questions,interviews,reviews
+from app.api.v1 import interviews, profiles, progress, questions, reviews
 
-api_router=APIRouter()
+api_router = APIRouter()
 
-#把另一个 router 里的接口，注册到当前 router 里面。
-api_router.include_router(              
+api_router.include_router(
     profiles.router,
     prefix="/v1/profiles",
     tags=["profiles"],
@@ -26,4 +25,10 @@ api_router.include_router(
     reviews.router,
     prefix="/v1/reviews",
     tags=["reviews"],
+)
+
+api_router.include_router(
+    progress.router,
+    prefix="/v1/progress",
+    tags=["progress"],
 )
